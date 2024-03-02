@@ -1,5 +1,5 @@
 import { useState } from "react"
-import axios from "axios"
+import SpendWiseAPI from "@/api"
 
 export default function ExpensesCreate({ categories }) {
     const [value, setValue] = useState(0)
@@ -9,13 +9,14 @@ export default function ExpensesCreate({ categories }) {
 
     function handleFormSubmission(event) {
         event.preventDefault()
-        const request_body = {
+        const payload = {
             value,
             date,
             category,
             description
         }
-        axios.post(`${process.env.NEXT_PUBLIC_SPENDWISE_API_BASE_URL}/expenses/`, request_body)
+        const api = new SpendWiseAPI()
+        api.createExpense(payload)
     }
 
     function handleValueInput(event) {
@@ -66,6 +67,7 @@ export default function ExpensesCreate({ categories }) {
 }
 
 export async function getServerSideProps() {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_SPENDWISE_API_BASE_URL}/categories/`)
+    const api = new SpendWiseAPI()
+    const response = await api.getCategories()
     return { props: { categories: response.data } }
 }
