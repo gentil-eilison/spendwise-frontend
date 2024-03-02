@@ -21,23 +21,27 @@ export default function ExpensesCreate({ categories }) {
     function handleValueInput(event) {
         setValue(event.currentTarget.value)
     }
-
+    
     function handleDateInput(event) {
         setDate(event.currentTarget.value)
+    }
+    
+    function handleDescriptionInput(event) {
+        setDescription(event.currentTarget.value)
+    }
+
+    function handleCategoryInput(event) {
+        setCategory(event.currentTarget.value)
     }
 
     function renderCategories() {
         return (
-            <select type="number" name="category" id="category">
+            <select onChange={handleCategoryInput} type="number" name="category" id="category">
                 {categories.map(category => {
-                    return <option key={category.id} value={categories.id}>{category.name}</option>
+                    return <option key={category.id} value={`${category.id}`}>{category.name}</option>
                 })}
             </select>
         )
-    }
-
-    function handleDescriptionInput(event) {
-        setDescription(event.currentTarget.value)
     }
 
     return (
