@@ -15,4 +15,8 @@ export default class SpendWiseAPI {
     createExpense(payload) {
         return this.client.post("/expenses/", payload)
     }
+
+    getExpenses() {
+        return this.client.get("/expenses/")
+    }
 }
