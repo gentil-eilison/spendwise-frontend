@@ -1,16 +1,21 @@
 import Head from "next/head";
-import { useState, useEffect } from "react";
-import ExpenseItem from "@/components/expense_item/ExpenseItem";
+import Link from "next/link";
+import { useState } from "react";
+
 import SpendWiseAPI from "@/api";
+
+import ExpenseItem from "@/components/expense_item/ExpenseItem";
 import Button from "@/components/button/Button";
 import Input from "@/components/input/Input";
 import Select from "@/components/select/Select";
+import Header from "@/components/Header/Header";
 
 export default function Home({ expenses, categories }) {
   const [category, setCategory] = useState("")
   const [date, setDate] = useState("")
 
   function handleCategoryFilterInput(event) {
+    console.log(event.currentTarget.value)
     setCategory(event.currentTarget.value)
   }
 
@@ -41,17 +46,14 @@ export default function Home({ expenses, categories }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="border border-secondary vh-100 d-flex flex-column align-items-center justify-content-around">
-        <header className="d-flex align-items-center gap-3">
-          <h1 className="text-success">SPENDWISE</h1>
-          <i className="bi bi-wallet-fill fs-1 text-success"></i>
-        </header>
+        <Header />
         <section className="w-75">
           <p className="text-success fs-2 fw-bold">Filters <i className="bi bi-funnel-fill"></i></p>
           <div className="d-flex gap-4 align-items-end">
-            <Select name="category" label="Category">
+            <Select onChange={handleCategoryFilterInput} name="category" label="Category">
               { renderCategoriesOptions() }
             </Select>
-            <Input type="date" name="date" label="Date" />
+            <Input onChange={handleDateFilterInput} type="date" name="date" label="Date" />
             <Button color="btn-success" type="button">Filter</Button>
             <Button color="btn-warning" type="button">Clear Filters</Button>
           </div>
@@ -62,6 +64,7 @@ export default function Home({ expenses, categories }) {
             { renderExpenses() }
           </ul>
         </section>
+        <Link className="btn btn-success" href="/expenses/create">Add Expense <i class="bi bi-plus-circle-fill"></i></Link>
       </main>
     </>
   );
