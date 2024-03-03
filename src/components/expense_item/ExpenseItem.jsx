@@ -6,11 +6,9 @@ export default function ExpenseItem({ expense }) {
     }
 
     return (
-        <tr>
-            <td>{ expense.description }</td>
-            <td>{ expense.value }</td>
-            <td>{ getFormattedDate() }</td>
-            <td>{ expense.category }</td>
-        </tr>
+        <li className="list-group-item d-flex justify-content-between">
+            <span>{ expense.description } { expense.value } { expense.currency }</span>
+            <span>{ getFormattedDate() } { expense.category }</span>
+        </li>
     )
 }
