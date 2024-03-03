@@ -10,3 +10,7 @@ body {
   height: 100vh;
   overflow-x: hidden;
 }
+
+input, select {
+  width: 200px !important;
+}

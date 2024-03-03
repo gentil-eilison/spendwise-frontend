@@ -1,5 +1,12 @@
 import { useState } from "react"
+
 import SpendWiseAPI from "@/api"
+
+import Header from "@/components/Header/Header"
+import NumberInput from "@/components/NumberInput/NumberInput"
+import Input from "@/components/input/Input"
+import Button from "@/components/button/Button"
+import Select from "@/components/select/Select"
 
 export default function ExpensesCreate({ categories }) {
     const [value, setValue] = useState(0)
@@ -35,32 +42,33 @@ export default function ExpensesCreate({ categories }) {
         setCategory(event.currentTarget.value)
     }
 
-    function renderCategories() {
+    function renderCategoriesOptions() {
         return (
-            <select onChange={handleCategoryInput} type="number" name="category" id="category">
-                {categories.map(category => {
-                    return <option key={category.id} value={`${category.id}`}>{category.name}</option>
-                })}
-            </select>
+            categories.map(category => {
+                return <option key={category.id} value={`${category.id}`}>{category.name}</option>
+            })
         )
     }
 
     return (
-        <main>
-            <form onSubmit={handleFormSubmission}>
-                <input 
-                    onChange={handleValueInput} type="number" 
-                    name="value" id="value" placeholder="3.50" step="any" 
-                />
-                <input 
-                    onChange={handleDateInput} type="date" name="date" id="date" 
-                />
-                {renderCategories()}
-                <input 
-                    onChange={handleDescriptionInput} type="text" name="description" 
-                    id="description" placeholder="New toy for Jimmy"
-                />
-                <button type="submit">Add</button>
+        <main className="vh-100 d-flex flex-column align-items-center justify-content-around">
+            <Header />
+            <form className="shadow p-3 mb-5 bg-body-tertiary rounded d-flex flex-column justify-content-center align-items-center gap-4" onSubmit={handleFormSubmission}>
+                <h2 className="text-success">New Expense <i class="bi bi-box-seam-fill"></i></h2>
+                <div className="input-group gap-4">
+                    <NumberInput 
+                        name="value" label="Value" step="any" 
+                        placeholder="3.50" onChange={handleValueInput} 
+                    />
+                    <Input label="Date" type="date" name="date" onChange={handleDateInput} />
+                </div>
+                <div className="input-group gap-4">
+                    <Select label="Categories" name="category" onChange={handleCategoryInput}>
+                        { renderCategoriesOptions() }
+                    </Select>
+                    <Input label="Description" type="text" name="description" onChange={handleDescriptionInput} />
+                </div>
+                <Button type="submit" color="btn-success">Add <i class="bi bi-plus-circle-fill"></i></Button>
             </form>
         </main>
     )
