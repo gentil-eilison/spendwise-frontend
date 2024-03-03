@@ -7,23 +7,26 @@ import NumberInput from "@/components/NumberInput/NumberInput"
 import Input from "@/components/input/Input"
 import Button from "@/components/button/Button"
 import Select from "@/components/select/Select"
+import Toast from "@/components/Toast/Toast"
 
 export default function ExpensesCreate({ categories }) {
     const [value, setValue] = useState(0)
     const [date, setDate] = useState()
     const [category, setCategory] = useState(1)
     const [description, setDescription] = useState("")
+    const [showToast, setShowToast] = useState(false)
 
     function handleFormSubmission(event) {
         event.preventDefault()
         const payload = {
             value,
             date,
-            category,
+            category: Number(category),
             description
         }
         const api = new SpendWiseAPI()
         api.createExpense(payload)
+        setShowToast(true)
     }
 
     function handleValueInput(event) {
@@ -68,8 +71,14 @@ export default function ExpensesCreate({ categories }) {
                     </Select>
                     <Input label="Description" type="text" name="description" onChange={handleDescriptionInput} />
                 </div>
-                <Button type="submit" color="btn-success">Add <i class="bi bi-plus-circle-fill"></i></Button>
+                <Button id="addExpense" type="submit" color="btn-success">Add <i class="bi bi-plus-circle-fill"></i></Button>
             </form>
+            { showToast ? (
+                <Toast setShowToast={setShowToast} color="success">Expense created successfully</Toast>
+            ) : (
+                <>
+                </>
+            ) }
         </main>
     )
 }
