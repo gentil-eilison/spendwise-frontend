@@ -64,7 +64,7 @@ export default function Home({ expenses, categories }) {
             { renderExpenses() }
           </ul>
         </section>
-        <Link className="btn btn-success" href="/expenses/create">Add Expense <i class="bi bi-plus-circle-fill"></i></Link>
+        <Link className="btn btn-success" href="/expenses/create">Add Expense <i className="bi bi-plus-circle-fill"></i></Link>
       </main>
     </>
   );

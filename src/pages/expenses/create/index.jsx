@@ -27,6 +27,7 @@ export default function ExpensesCreate({ categories }) {
         const api = new SpendWiseAPI()
         api.createExpense(payload)
         setShowToast(true)
+        event.currentTarget.reset()
     }
 
     function handleValueInput(event) {
@@ -57,7 +58,7 @@ export default function ExpensesCreate({ categories }) {
         <main className="vh-100 d-flex flex-column align-items-center justify-content-around">
             <Header />
             <form className="shadow p-3 mb-5 bg-body-tertiary rounded d-flex flex-column justify-content-center align-items-center gap-4" onSubmit={handleFormSubmission}>
-                <h2 className="text-success">New Expense <i class="bi bi-box-seam-fill"></i></h2>
+                <h2 className="text-success">New Expense <i className="bi bi-box-seam-fill"></i></h2>
                 <div className="input-group gap-4">
                     <NumberInput 
                         name="value" label="Value" step="any" 
@@ -71,7 +72,7 @@ export default function ExpensesCreate({ categories }) {
                     </Select>
                     <Input label="Description" type="text" name="description" onChange={handleDescriptionInput} />
                 </div>
-                <Button id="addExpense" type="submit" color="btn-success">Add <i class="bi bi-plus-circle-fill"></i></Button>
+                <Button id="addExpense" type="submit" color="btn-success">Add <i className="bi bi-plus-circle-fill"></i></Button>
             </form>
             { showToast ? (
                 <Toast setShowToast={setShowToast} color="success">Expense created successfully</Toast>
