@@ -12,8 +12,15 @@ export default class SpendWiseAPI {
         return this.client.get("/categories/")
     }
 
-    createExpense(payload) {
-        return this.client.post("/expenses/", payload)
+    async createExpense(payload) {
+        const response = this.client.post("/expenses/", payload).then(
+            response => {return response}
+        ).catch(error => {
+            if (error.response) {
+                return
+            }
+        })
+        return response
     }
 
     getExpenses() {

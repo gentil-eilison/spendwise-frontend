@@ -15,9 +15,10 @@ export default function ExpensesCreate({ categories }) {
     const [date, setDate] = useState()
     const [category, setCategory] = useState(1)
     const [description, setDescription] = useState("")
-    const [showToast, setShowToast] = useState(false)
+    const [showSuccessToast, setShowSuccessToast] = useState(false)
+    const [showErrorToast, setShowErrorToast] = useState(false)
 
-    function handleFormSubmission(event) {
+    async function handleFormSubmission(event) {
         event.preventDefault()
         const payload = {
             value,
@@ -26,9 +27,19 @@ export default function ExpensesCreate({ categories }) {
             description
         }
         const api = new SpendWiseAPI()
-        api.createExpense(payload)
-        setShowToast(true)
-        event.currentTarget.reset()
+        const response = await api.createExpense(payload)
+        console.log(response)
+        if (response) {
+            setShowSuccessToast(true)
+            event.target.reset()
+            setValue(0)
+            setDate()
+            setCategory(1)
+            setDescription("")
+        } else {
+            setShowErrorToast(true)
+        }
+
     }
 
     function handleValueInput(event) {
@@ -78,8 +89,14 @@ export default function ExpensesCreate({ categories }) {
                     <Link className="btn btn-warning text-black px-5" href="/">Cancel <i className="bi bi-x-circle-fill"></i></Link>
                 </div>
             </form>
-            { showToast ? (
-                <Toast setShowToast={setShowToast} color="success">Expense created successfully</Toast>
+            { showSuccessToast ? (
+                <Toast setShowToast={setShowSuccessToast} color="success">Expense created</Toast>
+            ) : (
+                <>
+                </>
+            ) }
+            { showErrorToast ? (
+                <Toast setShowToast={setShowErrorToast} color="danger">An error ocurred in the server</Toast>
             ) : (
                 <>
                 </>
