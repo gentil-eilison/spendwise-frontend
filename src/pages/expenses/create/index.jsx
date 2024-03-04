@@ -28,7 +28,6 @@ export default function ExpensesCreate({ categories }) {
         }
         const api = new SpendWiseAPI()
         const response = await api.createExpense(payload)
-        console.log(response)
         if (response) {
             setShowSuccessToast(true)
             event.target.reset()
