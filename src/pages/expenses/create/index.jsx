@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Link from "next/link"
 
 import SpendWiseAPI from "@/api"
 
@@ -72,7 +73,10 @@ export default function ExpensesCreate({ categories }) {
                     </Select>
                     <Input label="Description" type="text" name="description" onChange={handleDescriptionInput} />
                 </div>
-                <Button id="addExpense" type="submit" color="btn-success">Add <i className="bi bi-plus-circle-fill"></i></Button>
+                <div className="d-flex justify-content-around w-100">
+                    <Button id="addExpense" type="submit" color="btn-success">Add <i className="bi bi-plus-circle-fill"></i></Button>
+                    <Link className="btn btn-warning text-black px-5" href="/">Cancel <i className="bi bi-x-circle-fill"></i></Link>
+                </div>
             </form>
             { showToast ? (
                 <Toast setShowToast={setShowToast} color="success">Expense created successfully</Toast>
