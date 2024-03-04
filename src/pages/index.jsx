@@ -45,7 +45,7 @@ export default function Home({ expenses, categories }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="vh-100 d-flex flex-column align-items-center justify-content-around">
+      <main className="d-flex flex-column align-items-center justify-content-around gap-4">
         <Header />
         <section className="w-75">
           <p className="text-success fs-2 fw-bold">Filters <i className="bi bi-funnel-fill"></i></p>
