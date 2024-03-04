@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import SpendWiseAPI from "@/api";
 
@@ -10,12 +10,21 @@ import Input from "@/components/input/Input";
 import Select from "@/components/select/Select";
 import Header from "@/components/Header/Header";
 
-export default function Home({ expenses, categories }) {
+export default function Home({ categories }) {
   const [category, setCategory] = useState("")
   const [date, setDate] = useState("")
+  const [expenses, setExpenses] = useState([])
+
+  function getExpenses() {
+    const api = new SpendWiseAPI()
+    api.getExpenses({ category, date }).then(response => setExpenses(response.data))
+  }
+
+  useEffect(() => {
+    getExpenses()
+  }, [])
 
   function handleCategoryFilterInput(event) {
-    console.log(event.currentTarget.value)
     setCategory(event.currentTarget.value)
   }
 
@@ -54,7 +63,7 @@ export default function Home({ expenses, categories }) {
               { renderCategoriesOptions() }
             </Select>
             <Input onChange={handleDateFilterInput} type="date" name="date" label="Date" />
-            <Button color="btn-success" type="button">Filter</Button>
+            <Button onClick={getExpenses} color="btn-success" type="button">Filter</Button>
             <Button color="btn-warning" type="button">Clear Filters</Button>
           </div>
         </section>
@@ -72,7 +81,6 @@ export default function Home({ expenses, categories }) {
 
 export async function getServerSideProps() {
   const api = new SpendWiseAPI()
-  const expenses_response = await api.getExpenses()
-  const cateogries_response = await api.getCategories()
-  return { props: { expenses: expenses_response.data, categories: cateogries_response.data } }
+  const response = await api.getCategories()
+  return { props: { categories: response.data } }
 }

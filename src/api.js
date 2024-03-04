@@ -23,7 +23,9 @@ export default class SpendWiseAPI {
         return response
     }
 
-    getExpenses() {
-        return this.client.get("/expenses/")
+    getExpenses(query_params) {
+        return this.client.get("/expenses/", {
+            params: query_params
+        })
     }
 }
