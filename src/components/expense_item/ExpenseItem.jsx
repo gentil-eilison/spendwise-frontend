@@ -23,14 +23,21 @@ export default class ExpenseItem extends Component {
     render() {
         return (
             <li className="list-group-item d-flex justify-content-between">
-                <span>{ this.props.expense.description } { this.props.expense.value } { this.props.expense.currency }</span>
+                <span>
+                    { this.props.expense.description } { this.props.expense.value } 
+                    { this.props.expense.currency }
+                </span>
                 <span className="d-flex gap-3">
                     <span>
                         { this.getFormattedDate() } { this.props.expense.category } 
                     </span>
                     <span className="d-flex gap-2">
-                        <Link href={`/expenses/update/${this.props.expense.id}/`}><i className="bi bi-pencil-fill"></i></Link>
-                        <Link onClick={this.handleExpenseDelete} href=""><i className="bi bi-trash2-fill"></i></Link>
+                        <Link href={`/expenses/update/${this.props.expense.id}/`}>
+                            <i className="bi bi-pencil-fill"></i>
+                        </Link>
+                        <Link onClick={this.handleExpenseDelete} href="">
+                            <i className="bi bi-trash2-fill"></i>
+                        </Link>
                     </span>
                 </span>
             </li>
