@@ -28,4 +28,8 @@ export default class SpendWiseAPI {
             params: query_params
         })
     }
+
+    deleteExpense(expense_id) {
+        return this.client.delete(`/expenses/${expense_id}/`)
+    }
 }

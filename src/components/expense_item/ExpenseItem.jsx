@@ -1,3 +1,7 @@
+import Link from "next/link"
+
+import SpendWiseAPI from "@/api"
+
 export default function ExpenseItem({ expense }) {
     function getFormattedDate() {
         const [year, month, day] = expense.date.split("-")
@@ -6,9 +10,13 @@ export default function ExpenseItem({ expense }) {
     }
 
     return (
-        <li className="list-group-item d-flex justify-content-between">
+        <>
             <span>{ expense.description } { expense.value } { expense.currency }</span>
-            <span>{ getFormattedDate() } { expense.category }</span>
-        </li>
+            <span className="d-flex gap-3">
+                <span>
+                    { getFormattedDate() } { expense.category } 
+                </span>
+            </span>
+        </>
     )
 }
