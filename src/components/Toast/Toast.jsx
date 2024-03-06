@@ -11,7 +11,11 @@ export default function Toast({ children, color, setShowToast }) {
                 <div className="toast-body">
                     { children }
                 </div>
-                <button onClick={closeToast} type="button" className="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                <button 
+                    onClick={closeToast} type="button" 
+                    className="btn-close btn-close-white me-2 m-auto" 
+                    data-bs-dismiss="toast" aria-label="Close">
+                </button>
             </div>
         </div>      
     )
