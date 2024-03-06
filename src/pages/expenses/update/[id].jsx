@@ -63,35 +63,56 @@ export default function ExpensesUpdate({ categories, expense, categoryId }) {
     return (
         <main className="vh-100 d-flex flex-column align-items-center justify-content-around">
             <Header />
-            <form className="shadow p-3 mb-5 bg-body-tertiary rounded d-flex flex-column justify-content-center align-items-center gap-4" onSubmit={handleFormSubmission}>
-                <h2 className="text-success">Update Expense <i className="bi bi-box-seam-fill"></i></h2>
-                <div className="input-group gap-4">
-                    <NumberInput 
-                        value={value}
-                        name="value" label="Value" step="any" 
-                        placeholder="3.50" onChange={handleValueInput} 
-                    />
-                    <Input value={date} label="Date" type="date" name="date" onChange={handleDateInput} />
-                </div>
-                <div className="input-group gap-4">
-                    <Select value={category} label="Categories" name="category" onChange={handleCategoryInput}>
-                        { renderCategoriesOptions() }
-                    </Select>
-                    <Input value={description} label="Description" type="text" name="description" onChange={handleDescriptionInput} />
-                </div>
-                <div className="d-flex justify-content-around w-100">
-                    <Button id="addExpense" type="submit" color="btn-success">Update <i className="bi bi-check-circle-fill"></i></Button>
-                    <Link className="btn btn-warning text-black px-5" href="/">Cancel <i className="bi bi-x-circle-fill"></i></Link>
-                </div>
+            <form 
+                className="shadow p-3 mb-5 bg-body-tertiary rounded d-flex flex-column justify-content-center align-items-center gap-4" 
+                onSubmit={handleFormSubmission}>
+                    <h2 className="text-success">
+                        Update Expense <i className="bi bi-box-seam-fill"></i>
+                    </h2>
+                    <div className="input-group gap-4">
+                        <NumberInput 
+                            value={value}
+                            name="value" label="Value" step="any" 
+                            placeholder="3.50" onChange={handleValueInput} 
+                        />
+                        <Input 
+                            value={date} label="Date" type="date" name="date" 
+                            onChange={handleDateInput} 
+                        />
+                    </div>
+                    <div className="input-group gap-4">
+                        <Select 
+                            value={category} label="Categories" name="category" 
+                            onChange={handleCategoryInput}
+                        >
+                            { renderCategoriesOptions() }
+                        </Select>
+                        <Input 
+                            value={description} label="Description" type="text" 
+                            name="description" onChange={handleDescriptionInput} 
+                        />
+                    </div>
+                    <div className="d-flex justify-content-around w-100">
+                        <Button id="addExpense" type="submit" color="btn-success">
+                            Update <i className="bi bi-check-circle-fill"></i>
+                        </Button>
+                        <Link className="btn btn-warning text-black px-5" href="/">
+                            Cancel <i className="bi bi-x-circle-fill"></i>
+                        </Link>
+                    </div>
             </form>
             { showSuccessToast ? (
-                <Toast setShowToast={setShowSuccessToast} color="success">Expense updated</Toast>
+                <Toast setShowToast={setShowSuccessToast} color="success">
+                    Expense updated
+                </Toast>
             ) : (
                 <>
                 </>
             ) }
             { showErrorToast ? (
-                <Toast setShowToast={setShowErrorToast} color="danger">An error ocurred in the server</Toast>
+                <Toast setShowToast={setShowErrorToast} color="danger">
+                    An error ocurred in the server
+                </Toast>
             ) : (
                 <>
                 </>
