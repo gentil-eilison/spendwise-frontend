@@ -60,7 +60,12 @@ export default function ExpensesCreate({ categories }) {
     function renderCategoriesOptions() {
         return (
             categories.map(category => {
-                return <option key={category.id} value={`${category.id}`}>{category.name}</option>
+                return (
+                    <option 
+                        key={category.id} value={`${category.id}`}>
+                            {category.name}
+                    </option>
+                )
             })
         )
     }
@@ -68,34 +73,49 @@ export default function ExpensesCreate({ categories }) {
     return (
         <main className="vh-100 d-flex flex-column align-items-center justify-content-around">
             <Header />
-            <form className="shadow p-3 mb-5 bg-body-tertiary rounded d-flex flex-column justify-content-center align-items-center gap-4" onSubmit={handleFormSubmission}>
-                <h2 className="text-success">New Expense <i className="bi bi-box-seam-fill"></i></h2>
-                <div className="input-group gap-4">
-                    <NumberInput 
-                        name="value" label="Value" step="any" 
-                        placeholder="3.50" onChange={handleValueInput} 
-                    />
-                    <Input label="Date" type="date" name="date" onChange={handleDateInput} />
-                </div>
-                <div className="input-group gap-4">
-                    <Select label="Categories" name="category" onChange={handleCategoryInput}>
-                        { renderCategoriesOptions() }
-                    </Select>
-                    <Input label="Description" type="text" name="description" onChange={handleDescriptionInput} />
-                </div>
-                <div className="d-flex justify-content-around w-100">
-                    <Button id="addExpense" type="submit" color="btn-success">Add <i className="bi bi-plus-circle-fill"></i></Button>
-                    <Link className="btn btn-warning text-black px-5" href="/">Cancel <i className="bi bi-x-circle-fill"></i></Link>
-                </div>
+            <form 
+                className="shadow p-3 mb-5 bg-body-tertiary rounded d-flex flex-column justify-content-center align-items-center gap-4" 
+                onSubmit={handleFormSubmission}>
+                    <h2 className="text-success">
+                        New Expense <i className="bi bi-box-seam-fill"></i>
+                    </h2>
+                    <div className="input-group gap-4">
+                        <NumberInput 
+                            name="value" label="Value" step="any" 
+                            placeholder="3.50" onChange={handleValueInput} 
+                        />
+                        <Input label="Date" type="date" name="date" onChange={handleDateInput} />
+                    </div>
+                    <div className="input-group gap-4">
+                        <Select label="Categories" name="category" onChange={handleCategoryInput}>
+                            { renderCategoriesOptions() }
+                        </Select>
+                        <Input 
+                            label="Description" type="text" name="description" 
+                            onChange={handleDescriptionInput} 
+                        />
+                    </div>
+                    <div className="d-flex justify-content-around w-100">
+                        <Button id="addExpense" type="submit" color="btn-success">
+                            Add <i className="bi bi-plus-circle-fill"></i>
+                        </Button>
+                        <Link className="btn btn-warning text-black px-5" href="/">
+                            Cancel <i className="bi bi-x-circle-fill"></i>
+                        </Link>
+                    </div>
             </form>
             { showSuccessToast ? (
-                <Toast setShowToast={setShowSuccessToast} color="success">Expense created</Toast>
+                <Toast setShowToast={setShowSuccessToast} color="success">
+                    Expense created
+                </Toast>
             ) : (
                 <>
                 </>
             ) }
             { showErrorToast ? (
-                <Toast setShowToast={setShowErrorToast} color="danger">An error ocurred in the server</Toast>
+                <Toast setShowToast={setShowErrorToast} color="danger">
+                    An error ocurred in the server
+                </Toast>
             ) : (
                 <>
                 </>
