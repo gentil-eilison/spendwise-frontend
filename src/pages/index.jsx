@@ -47,7 +47,11 @@ export default class Home extends Component {
   renderExpenses = () => {
     return this.state.expenses.map(expense => {
       return (
-          <ExpenseItem updateExpensesHandler={this.handleExpensesDelete} expenses={this.state.expenses} key={expense.id} expense={expense}/>
+          <ExpenseItem 
+            updateExpensesHandler={this.handleExpensesDelete} 
+            expenses={this.state.expenses} key={expense.id} 
+            expense={expense}
+          />
       )
     })
   }
@@ -78,14 +82,28 @@ export default class Home extends Component {
         <main className="d-flex flex-column align-items-center justify-content-around gap-4">
           <Header />
           <section className="w-75">
-            <p className="text-success fs-2 fw-bold">Filters <i className="bi bi-funnel-fill"></i></p>
+            <p className="text-success fs-2 fw-bold">
+              Filters <i className="bi bi-funnel-fill"></i>
+            </p>
             <div className="d-flex gap-4 align-items-end">
-              <Select value={this.state.category} onChange={this.handleCategoryFilterInput} name="category" label="Category">
-                { this.renderCategoriesOptions() }
+              <Select 
+                value={this.state.category} 
+                onChange={this.handleCategoryFilterInput} name="category" label="Category">
+                  { this.renderCategoriesOptions() }
               </Select>
-              <Input value={this.state.date} onChange={this.handleDateFilterInput} type="date" name="date" label="Date" />
-              <Button onClick={this.getExpenses} color="btn-success" type="button">Filter</Button>
-              <Button onClick={this.clearFilters} color="btn-warning" type="button">Clear Filters</Button>
+              <Input 
+                value={this.state.date} 
+                onChange={this.handleDateFilterInput} 
+                type="date" name="date" label="Date" 
+              />
+              <Button 
+                onClick={this.getExpenses} color="btn-success" type="button">
+                  Filter
+              </Button>
+              <Button 
+                onClick={this.clearFilters} color="btn-warning" type="button">
+                  Clear Filters
+              </Button>
             </div>
           </section>
           <section className="d-flex flex-column w-50">
@@ -94,7 +112,9 @@ export default class Home extends Component {
               { this.renderExpenses() }
             </ul>
           </section>
-          <Link className="btn btn-success" href="/expenses/create">Add Expense <i className="bi bi-plus-circle-fill"></i></Link>
+          <Link className="btn btn-success" href="/expenses/create">
+            Add Expense <i className="bi bi-plus-circle-fill"></i>
+          </Link>
         </main>
       </>
     )
