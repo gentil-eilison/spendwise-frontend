@@ -52,7 +52,7 @@ export default class Home extends Component {
         <li className="list-group-item d-flex justify-content-between">
           <ExpenseItem key={expense.id} expense={expense}/>
           <span className="d-flex gap-2">
-              <Link href="/"><i className="bi bi-pencil-fill"></i></Link>
+              <Link href={`/expenses/update/${expense.id}/`}><i className="bi bi-pencil-fill"></i></Link>
               <Link onClick={() => this.handleExpenseDelete(expense.id)} href=""><i className="bi bi-trash2-fill"></i></Link>
           </span>
         </li>

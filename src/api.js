@@ -29,7 +29,23 @@ export default class SpendWiseAPI {
         })
     }
 
-    deleteExpense(expense_id) {
-        return this.client.delete(`/expenses/${expense_id}/`)
+    getExpense(exepnseId) {
+        return this.client.get(`/expenses/${exepnseId}`)
+    }
+
+    deleteExpense(expenseId) {
+        return this.client.delete(`/expenses/${expenseId}/`)
+    }
+
+    async updateExpense(expenseId, payload) {
+        const response = this.client.put(`/expenses/${expenseId}/`, payload).then(
+            response => {return response}
+        ).catch(error => {
+            console.log(error)
+            if (error.response) {
+                return
+            }
+        })
+        return response
     }
 }
