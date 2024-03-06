@@ -1,7 +1,3 @@
-import Link from "next/link"
-
-import SpendWiseAPI from "@/api"
-
 export default function ExpenseItem({ expense }) {
     function getFormattedDate() {
         const [year, month, day] = expense.date.split("-")
