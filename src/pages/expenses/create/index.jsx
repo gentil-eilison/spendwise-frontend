@@ -80,17 +80,19 @@ export default function ExpensesCreate({ categories }) {
                         New Expense <i className="bi bi-box-seam-fill"></i>
                     </h2>
                     <div className="input-group gap-4">
-                        <NumberInput 
+                        <NumberInput
+                            required={true}
                             name="value" label="Value" step="any" 
                             placeholder="3.50" onChange={handleValueInput} 
                         />
-                        <Input label="Date" type="date" name="date" onChange={handleDateInput} />
+                        <Input required={true} label="Date" type="date" name="date" onChange={handleDateInput} />
                     </div>
                     <div className="input-group gap-4">
-                        <Select label="Categories" name="category" onChange={handleCategoryInput}>
+                        <Select required={true} label="Categories" name="category" onChange={handleCategoryInput}>
                             { renderCategoriesOptions() }
                         </Select>
-                        <Input 
+                        <Input
+                            required={true}
                             label="Description" type="text" name="description" 
                             onChange={handleDescriptionInput} 
                         />

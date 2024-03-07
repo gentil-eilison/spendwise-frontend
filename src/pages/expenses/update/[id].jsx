@@ -70,24 +70,28 @@ export default function ExpensesUpdate({ categories, expense, categoryId }) {
                         Update Expense <i className="bi bi-box-seam-fill"></i>
                     </h2>
                     <div className="input-group gap-4">
-                        <NumberInput 
+                        <NumberInput
+                            required={true}
                             value={value}
                             name="value" label="Value" step="any" 
                             placeholder="3.50" onChange={handleValueInput} 
                         />
                         <Input 
+                            required={true}
                             value={date} label="Date" type="date" name="date" 
                             onChange={handleDateInput} 
                         />
                     </div>
                     <div className="input-group gap-4">
                         <Select 
+                            required={true}
                             value={category} label="Categories" name="category" 
                             onChange={handleCategoryInput}
                         >
                             { renderCategoriesOptions() }
                         </Select>
                         <Input 
+                            required={true}
                             value={description} label="Description" type="text" 
                             name="description" onChange={handleDescriptionInput} 
                         />
