@@ -29,6 +29,12 @@ export default class SpendWiseAPI {
         })
     }
 
+    getTotalAmount(query_params) {
+        return this.client.get("/expenses/total-amount/", {
+            params: query_params
+        })
+    }
+
     getExpense(exepnseId) {
         return this.client.get(`/expenses/${exepnseId}`)
     }

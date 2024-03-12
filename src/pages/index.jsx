@@ -16,7 +16,8 @@ export default class Home extends Component {
     this.state = {
       category: "",
       date: "",
-      expenses: []
+      expenses: [],
+      totalAmount: 0
     }
   }
 
@@ -28,8 +29,17 @@ export default class Home extends Component {
     }).then(response => this.setState({ expenses: response.data }))
   }
 
+  getTotalAmount = () => {
+    const api = new SpendWiseAPI()
+    api.getTotalAmount({
+      category: this.state.category,
+      date: this.state.date
+    }).then(response => this.setState({ totalAmount: response.data.total_amount }))
+  }
+
   componentDidMount() {
     this.getExpenses()
+    this.getTotalAmount()
   }
 
   handleCategoryFilterInput = (event) => {
@@ -40,8 +50,15 @@ export default class Home extends Component {
     this.setState({ date: event.currentTarget.value })
   }
 
+  handleFilter = () => {
+    this.getExpenses()
+    this.getTotalAmount()
+  }
+
   handleExpensesDelete = (updatedExpenses) => {
-    this.setState({ expenses: updatedExpenses })
+    this.setState({ expenses: updatedExpenses }, (previousState) => {
+      this.getTotalAmount()
+    })
   }
 
   renderExpenses = () => {
@@ -66,6 +83,7 @@ export default class Home extends Component {
     this.setState({ date: "" }, (previousState) => {
       this.setState({ category: "" }, (previousState) => {
         this.getExpenses()
+        this.getTotalAmount()
       })
     })
   }
@@ -97,7 +115,7 @@ export default class Home extends Component {
                 type="date" name="date" label="Date" 
               />
               <Button 
-                onClick={this.getExpenses} color="btn-success" type="button">
+                onClick={this.handleFilter} color="btn-success" type="button">
                   Filter
               </Button>
               <Button 
@@ -107,7 +125,7 @@ export default class Home extends Component {
             </div>
           </section>
           <section className="d-flex flex-column w-50">
-            <h2 className="text-center">Total Amount: </h2>
+            <h2 className="text-center">Total Amount: { this.state.totalAmount } BRL</h2>
             <ul className="list-group w-100">
               { this.renderExpenses() }
             </ul>
