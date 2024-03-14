@@ -32,7 +32,7 @@ export default function ExpensesCreate({ categories }) {
             setShowSuccessToast(true)
             event.target.reset()
             setValue(0)
-            setDate()
+            setDate("")
             setCategory(1)
             setDescription("")
         } else {
@@ -81,17 +81,19 @@ export default function ExpensesCreate({ categories }) {
                     </h2>
                     <div className="input-group gap-4">
                         <NumberInput
+                            value={value}
                             required={true}
                             name="value" label="Value" step="any" 
                             placeholder="3.50" onChange={handleValueInput} 
                         />
-                        <Input required={true} label="Date" type="date" name="date" onChange={handleDateInput} />
+                        <Input value={date} required={true} label="Date" type="date" name="date" onChange={handleDateInput} />
                     </div>
                     <div className="input-group gap-4">
-                        <Select required={true} label="Categories" name="category" onChange={handleCategoryInput}>
+                        <Select value={category} required={true} label="Categories" name="category" onChange={handleCategoryInput}>
                             { renderCategoriesOptions() }
                         </Select>
                         <Input
+                            value={description}
                             required={true}
                             label="Description" type="text" name="description" 
                             onChange={handleDescriptionInput} 

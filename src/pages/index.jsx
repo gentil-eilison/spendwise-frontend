@@ -26,20 +26,18 @@ export default class Home extends Component {
     api.getExpenses({
       category: this.state.category,
       date: this.state.date
-    }).then(response => this.setState({ expenses: response.data }))
+    }).then(response => this.setState({ expenses: response.data }, () => this.getTotalAmount()))
   }
 
   getTotalAmount = () => {
-    const api = new SpendWiseAPI()
-    api.getTotalAmount({
-      category: this.state.category,
-      date: this.state.date
-    }).then(response => this.setState({ totalAmount: response.data.total_amount }))
+    const totalAmount = this.state.expenses.reduce((accumulator, currentExpense) => {
+      return accumulator + Number(currentExpense.value)
+    }, 0)
+    this.setState({ totalAmount })
   }
 
   componentDidMount() {
     this.getExpenses()
-    this.getTotalAmount()
   }
 
   handleCategoryFilterInput = (event) => {
@@ -52,7 +50,6 @@ export default class Home extends Component {
 
   handleFilter = () => {
     this.getExpenses()
-    this.getTotalAmount()
   }
 
   handleExpensesDelete = (updatedExpenses) => {
