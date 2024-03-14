@@ -101,7 +101,7 @@ export default function ExpensesUpdate({ categories, expense, categoryId }) {
                             Update <i className="bi bi-check-circle-fill"></i>
                         </Button>
                         <Link className="btn btn-warning text-black px-5" href="/">
-                            Cancel <i className="bi bi-x-circle-fill"></i>
+                            Go Back <i className="bi bi-arrow-left-circle-fill"></i>
                         </Link>
                     </div>
             </form>

@@ -104,7 +104,7 @@ export default function ExpensesCreate({ categories }) {
                             Add <i className="bi bi-plus-circle-fill"></i>
                         </Button>
                         <Link className="btn btn-warning text-black px-5" href="/">
-                            Cancel <i className="bi bi-x-circle-fill"></i>
+                            Go Back <i className="bi bi-arrow-left-circle-fill"></i>
                         </Link>
                     </div>
             </form>
