@@ -1,5 +1,3 @@
-import { useState } from "react"
-
 export default function Toast({ children, color, setShowToast }) {
     function closeToast() {
         setShowToast(false)

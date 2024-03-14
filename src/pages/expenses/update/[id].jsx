@@ -5,9 +5,9 @@ import SpendWiseAPI from "@/api"
 
 import Header from "@/components/Header/Header"
 import NumberInput from "@/components/NumberInput/NumberInput"
-import Input from "@/components/input/Input"
-import Button from "@/components/button/Button"
-import Select from "@/components/select/Select"
+import Input from "@/components/Input/Input"
+import Button from "@/components/Button/Button"
+import Select from "@/components/Select/Select"
 import Toast from "@/components/Toast/Toast"
 
 export default function ExpensesUpdate({ categories, expense, categoryId }) {
